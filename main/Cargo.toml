@@ -8,6 +8,7 @@ edition = "2018"
 
 [dependencies]
 ranktest = { path = "../ranktest" }
+rankcorcoef = { path = "../rankcorcoef" }
 
 [lib]
 name = "ranktest"

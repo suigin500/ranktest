@@ -4,9 +4,17 @@
 name = "main"
 version = "0.1.0"
 dependencies = [
+ "rankcorcoef",
  "ranktest",
 ]
 
 [[package]]
+name = "rankcorcoef"
+version = "0.1.0"
+
+[[package]]
 name = "ranktest"
 version = "0.1.0"
+dependencies = [
+ "rankcorcoef",
+]

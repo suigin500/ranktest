@@ -1,3 +1,6 @@
+extern crate rankcorcoef;
+
+
 #[cfg(test)]
 mod tests {
     #[test]
