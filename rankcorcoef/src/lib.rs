@@ -1,8 +1,21 @@
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     #[test]
     fn it_works() {
         assert_eq!(2 + 2, 4);
+    }
+
+    // ケンドールの順位相関係数のテスト
+    #[test]
+    fn kendall_coefficient_test(){
+        let datax : Vec<f32> = vec![23.6,25.3,18.7,21.3,16.9,20.8];
+        let datay : Vec<f32> = vec![118.0,111.0,116.0,128.0,109.0,121.0];
+        let coefficient : f32;
+
+        coefficient = kendall_coefficient(datax,datay);
+        assert_eq!( coefficient, 0.2 , "{}",  coefficient );
     }
 }
 
@@ -25,12 +38,11 @@ pub fn kendall_coefficient(mut x: Vec<f32>, mut y: Vec<f32>) -> f32 {
     let mut coefficient : f32;
 
     // ２つの順位データの個数が異なっているならエラー終了
-    assert_eq!( x.len(), y.len() );
-    if x.len() != y.len() {
-        return 0.0
+     if x.len() != y.len() {
+        panic!("２つの順位データの個数が異なっている");
     }
 
-    // xとyのベクターの要素を昇順に直す
+    // xとyのベクターの要素を昇順に並べ直す
     // バブルソートする
     let mut work : f32;
     for i in 0..x.len() {
@@ -47,7 +59,7 @@ pub fn kendall_coefficient(mut x: Vec<f32>, mut y: Vec<f32>) -> f32 {
         }
     }
 
-    // y[i] < y[j] (i<j) となるyの個数を数える
+    // y[i] < y[j] (i<j) となるy[j]の個数を数える
     let mut supcount : i32 = 0 ;
     for i in 0..x.len() {
         for j in (i+1)..x.len() {
