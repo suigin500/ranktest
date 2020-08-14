@@ -33,7 +33,7 @@ pub extern "stdcall" fn Spearman(count: i32) -> i32 {
 // ケンドールの順位相関係数
 // x : 順位データ1
 // y : 順位データ2
-pub fn kendall_coefficient(mut x: Vec<f32>, mut y: Vec<f32>) -> f32 {
+pub extern "stdcall" fn kendall_coefficient(mut x: Vec<f32>, mut y: Vec<f32>) -> f32 {
     // ケンドールの順位相関係数
     let mut coefficient : f32;
 
@@ -70,10 +70,12 @@ pub fn kendall_coefficient(mut x: Vec<f32>, mut y: Vec<f32>) -> f32 {
     }
 
     // 相関係数の演算
+    let mut _work : f32;
     coefficient = 4.0;
     coefficient *= supcount as f32;
-    coefficient /=  x.len() as f32 ;
-    coefficient /= ( x.len() as f32 - 1.0 ) as f32;
+    _work =  x.len() as f32 ;
+    _work *= ( x.len() as f32 - 1.0 ) as f32;
+    coefficient /= _work;
     coefficient -= 1.0;
 
 
