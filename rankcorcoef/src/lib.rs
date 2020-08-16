@@ -15,7 +15,7 @@ mod tests {
         let coefficient : f32;
 
         coefficient = kendall_coefficient(datax,datay);
-        assert_eq!( coefficient, 0.2 , "{}",  coefficient );
+        assert_eq!( coefficient, 0.2 , "coefficientの値({})と一致しない",  coefficient );
     }
 }
 
@@ -75,9 +75,8 @@ pub extern "stdcall" fn kendall_coefficient(mut x: Vec<f32>, mut y: Vec<f32>) ->
     coefficient *= supcount as f32;
     _work =  x.len() as f32 ;
     _work *= ( x.len() as f32 - 1.0 ) as f32;
+    coefficient -= _work;
     coefficient /= _work;
-    coefficient -= 1.0;
-
 
     return coefficient;
 }
